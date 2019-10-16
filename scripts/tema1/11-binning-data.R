@@ -3,6 +3,7 @@ students <- read.csv("../data/tema1/data-conversion.csv")
 bp <- c(-Inf, 10000, 31000, Inf)
 names <- c("Low", "Average", "High")
 
+#vamos a cortar Income en varios trozos ordenados según las categorias de arriba
 students$Income.cat <- cut(students$Income, breaks = bp, labels = names)
 students$Income.cat2 <- cut(students$Income, breaks = bp)
 students$Income.cat3 <- cut(students$Income, 
