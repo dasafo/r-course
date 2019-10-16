@@ -1,7 +1,6 @@
 auto <- read.csv("../data/tema1/auto-mpg.csv", 
                  header = TRUE, sep = ",",
-                 strings.na = "",
-                 stringsAsFactors = FALSE)
+                 stringsAsFactors = FALSE) 
 names(auto)
 
 #read.csv2 == read.csv("filename", sep = ";", dec = ",")
@@ -10,9 +9,11 @@ names(auto)
 auto_no_header <- read.csv("../data/tema1/auto-mpg-noheader.csv", header = FALSE)
 head(auto_no_header, 4)
 
+#si no indicamos la cabecera, da algo sin sentido
 auto_no_sense <- read.csv("../data/tema1/auto-mpg-noheader.csv")
 head(auto_no_sense, 4)
 
+#cabeceras personalizadas
 auto_custom_header <- 
   read.csv("../data/tema1/auto-mpg-noheader.csv",
            header = F, 

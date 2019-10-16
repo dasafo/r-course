@@ -5,8 +5,8 @@ family.car = c("Lujo", "Compacto", "Utilitario", "Lujo",
 
 family <- data.frame(family.salary, family.size, family.car)
 
-family.unique <- unique(family)
+family.unique <- unique(family) #evita duplicaciones
 
-duplicated(family)
+duplicated(family) #Para que nos diga con bolleano donde se reptiren datos
 
-family[duplicated(family),]
+family[duplicated(family),] #para que nos muestre los datos repetios

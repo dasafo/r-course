@@ -1,12 +1,22 @@
 housing <- read.csv("../data/tema1/BostonHousing.csv")
 
-housing.z <- scale(housing, center = TRUE, scale = TRUE)
-housing.mean <- scale(housing, center = TRUE, scale = FALSE)
-housing.sd <- scale(housing, center = FALSE, scale = TRUE)
-housing.none <- scale(housing, center = FALSE, scale = FALSE)
+#--------------------------Normalización(Gaussiana)----------------------------
+#Z=(X-mu)/sigma
+
+#siendo mu, la media(mean). sigma la desviación tipica(sd), y Z la normalización
 
 #sd = sqrt(sum(x^2)/(n-1))
+#-------------------------------------------------------------------------------
 
+#scale para normalizar, pero solo funciona para variables numericas
+#center se refiere a la media(mu) y escale a la desviación tipica(sigma)
+housing.z <- scale(housing, center = TRUE, scale = TRUE) 
+housing.mean <- scale(housing, center = TRUE, scale = FALSE) 
+housing.sd <- scale(housing, center = FALSE, scale = TRUE)
+housing.none <- scale(housing, center = FALSE, scale = FALSE) 
+
+
+#funcion para reescalar varias variables de golpe(¡¡OJO: solo pueden ser numericas!!)
 scale.many = function(dataframe, cols){
   names <- names(dataframe)
   for(col in cols){
