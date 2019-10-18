@@ -6,7 +6,7 @@ auto$cylinders = factor(auto$cylinders,
 bwplot(~ auto$mpg | auto$cylinders,
        main = "MPG según cilindrada",
        xlab = "Millas por Galeón",
-       layout = c(2,3), aspect = 1)
+       layout = c(2,3), aspect = 0.5)
 
 xyplot(mpg~weight | cylinders, data = auto,
        main = "Peso vs Consumo vs Cilindrada",
@@ -14,4 +14,6 @@ xyplot(mpg~weight | cylinders, data = auto,
 
 ## bwplot, xyplot, densityplot, splom
 
-trellis.par.set(theme = col.whitebg())
+trellis.par.set(theme = col.whitebg()) #para elegir el tema
+
+                

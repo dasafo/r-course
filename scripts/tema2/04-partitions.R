@@ -20,17 +20,22 @@ data.testing <- temp[-validation.ids.2,]
 #------------- Vamos a crear una partición con variables categóricas----------
 
 data2 <- read.csv("../data/tema2/boston-housing-classification.csv")
+
+#Hacemos una partición de MEDV_CAT de 70% training 30% validación
 training.ids.3 <- createDataPartition(data2$MEDV_CAT, p = 0.7, list = F)
-data.training.3 <- data2[training.ids.3,]
-data.validation.3 <- data2[-training.ids.3,]
+data.training.3 <- data2[training.ids.3,] #para training
+data.validation.3 <- data2[-training.ids.3,] #para validation
 
+#Creamos una función para automatizar el proceso:
 
+#Función que parta en 2 trozos el df original
 rda.cb.partition2 <- function(dataframe, target.index, prob){
   library(caret)
   training.ids <- createDataPartition(dataframe[,target.index], p=prob, list = FALSE)
   list(train = dataframe[training.ids,], val = dataframe[-training.ids,])
 }
 
+#Función que parta en 3 trozos el df original
 rda.cb.partition3 <- function(dataframe, target.index,
                               prob.train, prob.val){
   library(caret)
@@ -41,14 +46,17 @@ rda.cb.partition3 <- function(dataframe, target.index,
   list(train = train.data, val = temp[validation.ids,], test = temp[-validation.ids,])
 }
 
+#-----------------------------------------------------------------------
 
-
-data1 <- rda.cb.partition2(data, 14, 0.8)
-data2 <- rda.cb.partition3(data2, 14, 0.7, 0.5)
+data1 <- rda.cb.partition2(data, 14, 0.8) #columna 14
+data2 <- rda.cb.partition3(data2, 14, 0.7, 0.5) #70% para entrenamiento, y del resto 50% para validacio y 50% para testing
 
 head(data1$val)
 head(data2$val)
 
 nrow(data)
 
-sample1 <- sample(data$CRIM, 40, replace = F)
+## Con sample() podemos sacar muestras aleatorias
+sample1 <- sample(data$CRIM, 40, replace = F) 
+#40 elemetnos en la muestra, 
+#replace=False todos los elementos de la muestra serán diferentes, no habrá repetidos

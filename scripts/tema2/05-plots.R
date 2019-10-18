@@ -1,32 +1,36 @@
 auto <- read.csv("../data/tema2/auto-mpg.csv")
-auto$cylinders <- factor(auto$cylinders, 
+
+#pasamos la variabale de Cilindros a categórica
+auto$cylinders <- factor(auto$cylinders,
                          levels = c(3,4,5,6,8),
                          labels = c("3cil", "4cil", "5cil", "6cil", "8cil"))
-attach(auto)
-head(cylinders)
 
-#Histograma de frecuencias
+attach(auto) #Con attach auto queda ligado a lsa sesión actual de R
+head(cylinders) #podemos por eso acceder directamente
+
+
+##-------Histograma de frecuencias--------
 hist(acceleration,
-     col = rainbow(12),
+     col = rainbow(18),
      xlab = "Aceleración",
      ylab = "Frecuencias",
      main = "Histograma de las aceleraciones",
-     breaks = 12)
+     breaks = 18)
 
-hist(mpg, breaks = 16, prob = T)
-lines(density(mpg))
+hist(mpg, col="red",breaks = 12, prob = T)
+lines(density(mpg), col="green")
 
 
-#Boxplots
-boxplot(mpg, xlab = "Millas por Galeón")
-boxplot(mpg ~ model_year, xlab = "Millas por Galeón (por año)")
+##-----Boxplots--------
+boxplot(mpg, xlab = "Millas por Galón")
+boxplot(mpg ~ model_year, xlab = "Millas por Galón (por año)")
 boxplot(mpg ~ cylinders, xlab = "Consumo por Número de cilindros")
 boxplot(auto)
 
-#Scatterplot
-plot(mpg ~ horsepower, type = "n")
-linearmodel <- lm(mpg ~ horsepower)
-abline(linearmodel)
+##------Scatterplot--------
+plot(mpg ~ horsepower, type="n") #type=n para que se vean bien los with de abajo(se puede quitar tranquilamente)
+linearmodel <- lm(mpg ~ horsepower) #pintamos recta de regresion lineal
+abline(linearmodel, col="red")
 #Agregar colores para cada cilindrada
 with(subset(auto, cylinders=="8cil"), 
      points(horsepower, mpg, col = "red"))
@@ -38,11 +42,12 @@ with(subset(auto, cylinders == "4cil"),
      points(horsepower, mpg, col = "blue"))
 with(subset(auto, cylinders == "3cil"),
      points(horsepower, mpg))
+
 #Matriz de Scatterplots
 pairs(~mpg+displacement+horsepower+weight)
+#Cruzamos las 4 variables entre si, y obtenemos varias gráficas
 
-
-#Combinación de plots con par
+#Combinación de plots con par()
 old.par <- par()
 old.par
 par(mfrow = c(1,2))
@@ -53,4 +58,6 @@ with(auto, {
 }
 )
 
-par(old.par)
+par(old.par) 
+#Hay que poner esto último para cerrar la configuracion
+#sino mantednrá el resto del código a la hora de hacer gŕaficas

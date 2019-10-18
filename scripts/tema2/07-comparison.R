@@ -1,13 +1,14 @@
 data <- read.csv("../data/tema2/daily-bike-rentals.csv")
 
+#Modificamos los valores de 3 columnas para que tengan mas sentido para nosotros
 data$season <- factor(data$season, levels = c(1,2,3,4), 
                       labels = c("Invierno", "Primavera", "Verano", "Otoño"))
 data$workingday <- factor(data$workingday, levels = c(0,1),
                           labels = c("Festivo", "De trabajo"))
 data$weathersit <- factor(data$weathersit, levels = c(1,2,3),
                           labels = c("Despejado", "Nublado", "Lluvia/Nieve ligera"))
-data$dteday <- as.Date(data$dteday, format = "%Y-%m-%d")
-attach(data)
+data$dteday <- as.Date(data$dteday, format = "%Y-%m-%d") #lo ponemos en formato fecha
+attach(data)  #para poder usar los elementos de data mejor en esta sesión de R
 
 par(mfrow=c(2,2))
 winter <- subset(data, season == "Invierno")$cnt
@@ -15,11 +16,10 @@ spring <- subset(data, season == "Primavera")$cnt
 summer <- subset(data, season == "Verano")$cnt
 fall   <- subset(data, season == "Otoño")$cnt
 
-hist(winter, prob = TRUE, xlab = "Alquiler diario en invierno", main ="")
+hist(winter, prob = TRUE, xlab = "Alquiler diario en invierno", main ="")#Prob=True para indicar que son frecuecnias relativas, no absolutas
 lines(density(winter))
 abline(v = mean(winter), col = "red")
 abline(v=median(winter), col = "blue")
-
 
 
 hist(spring, prob = TRUE, xlab = "Alquiler diario en primavera", main = "")
@@ -39,12 +39,12 @@ lines(density(fall))
 abline(v = mean(fall), col="red")
 abline(v=median(fall), col="blue")
 
-
+##--------------Diagrama beanplot (diagrama de la judia)--------------
 install.packages("beanplot")
 library(beanplot)
 
 par(mfrow=c(1,1))
-beanplot(data$cnt ~ data$season, col = c("blue", "red", "yellow"))
+beanplot(data$cnt ~ data$season, col = c("blue", "red", "green"))
 
 
 
