@@ -9,7 +9,7 @@ data$cylinders <- factor(data$cylinders,
                          labels = c("3cil", "4cil", "5cil", "6cil", "8cil"))
 
 
-summary(data) #vemos que en cilidnros no da el número por cada tipo de cilindros
+summary(data) #vemos que en cilidnros nos da el número por cada tipo de cilindros
 
 str(data) #Para ver la estrucura del df
 

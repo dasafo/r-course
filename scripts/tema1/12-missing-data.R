@@ -54,7 +54,7 @@ summary(housing.data.copy3)
 
 #-------------Para ver el patrón de las variables que faltan-----------------
 
-#_____Primera forma con MICE:______
+#_____1ª forma con MICE:______
 
 install.packages("mice")
 library(mice)
@@ -70,7 +70,7 @@ md.pattern(housing.data)
 #No falta ningún dato en ninguna variable salvo en rad(40 datos) y pratio(40 datos)
 
 
-#________Segunda forma con VIM:_______
+#_____2ª forma con VIM:_______
 install.packages("VIM")
 library(VIM)
 
