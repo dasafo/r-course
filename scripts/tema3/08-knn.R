@@ -1,5 +1,5 @@
 ## K-Nearest Neighbours(knn)
-#Exige que las variables predictoras sean numericas y las predictoras categoricas
+#Exige que las variables predictoras sean numericas y las de salida categoricas
 
 install.packages("class")
 library(class)

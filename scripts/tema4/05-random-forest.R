@@ -14,14 +14,14 @@ mod
 
 mod$importance
 
-
+#Entrenamiento
 plot(bh[t.id,]$MEDV, predict(mod, newdata = bh[t.id,]),
-     xlab = "Actual", ylab = "Predichos")
+     xlab = "Actual", ylab = "Predichos", col="red")
 abline(0,1)
 
-
+#Prediccion
 plot(bh[-t.id,]$MEDV, predict(mod, newdata = bh[-t.id,]),
-     xlab = "Actual", ylab = "Predichos")
+     xlab = "Actual", ylab = "Predichos", col="red")
 abline(0,1)
 
 #mtry = m/3, donde m = # de predictores

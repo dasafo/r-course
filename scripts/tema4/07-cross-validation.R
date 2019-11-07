@@ -25,10 +25,9 @@ kfold.cval.reg.iter <- function(k, df, fold){
   mean(sqr.errs)
 }
 
-
 res <- kfold.crossval.reg(bh, 5)
-
 res
+
 
 
 loocv.reg <- function(df){
