@@ -10,21 +10,23 @@ library(slam)
 library(sentiment)
 library(twitteR)
 
-api_key <- "Km07yXQyohsRRx6vr4DbKYF5C"
-api_secret <- "RDMCCXdwdmDZL0zI2Polj4KGG8Mc86B0IjfRNjfjShQJtmle6P"
-access_token <- "207177829-zzm2C1cG1oHxE77xgqGOpAay3PMBYhTpchEMtXBC"
-access_token_secret <- "Xh5GIQkQbzJnIXoHezfrtxrSdSHtR4KMhL6xX8ggYS0ub"
+api_key <- "Je2Hm6os35YTUpUWESCI02AYW"
+api_secret <- "H8KdNKNzK9vKvD9UbJYlqs6Jzf0cFB4lFoa7eO8yu96oU1vz7J"
+access_token <- "754714491875684352-N78RIjTDhXDZfAULlbLmLa7hiuLk78y"
+access_token_secret <- "3XcegwAyVUBDtyaTa40qdXtkzrtJjHSAwVsbroQBjfuzz"
 
 setup_twitter_oauth(api_key, api_secret,
                     access_token, access_token_secret)
 
-tweets <- searchTwitter("machinelearning", n = 1500, lang = "en")
+tweets <- searchTwitter("mena", n = 1500, lang = "es")
 
 texts <- sapply(tweets, function(x) x$getText())
 
 clean.data <- function(text){
   #eliminar re-tweets y @ del texto original
-  text = gsub("(RT|VIA)((?:\\b\\W*@\\w+)+)", "", text)
+  text = gsub("(RT|VIA)((?:\\b\\W*@\\w+)+)", "", text) 
+  #?:\\b\\W*@\\w+ es tal vez espacio en blanco, o caracter especial @, o bien nada
+  # con "" le decimos que entonces elimine dichas condiciones y nos quedamos con el texto original
   text = gsub("@\\w+", "", text)
   
   #eliminar signos de puntuación y dígitos del 0 al 9

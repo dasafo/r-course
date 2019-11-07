@@ -1,3 +1,7 @@
+## Modelo de regresion logaritmica
+#las variables prediciotras o independientes tienen que ser numericas y las
+#dependientes o de salida, sean categoricas y binarias(0 y 1)
+
 library(caret)
 
 bh <- read.csv("../data/tema3/boston-housing-logistic.csv")

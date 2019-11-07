@@ -1,3 +1,7 @@
+## Metodo Naive Bayes
+#Da por hecho que las variables no tienen ninguna relacion entre ellas(naive=iluso)
+#las variables deben ser categorias siempre
+
 library(e1071)
 library(caret)
 

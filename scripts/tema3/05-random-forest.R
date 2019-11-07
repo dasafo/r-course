@@ -10,8 +10,8 @@ training.ids <- createDataPartition(banknote$class, p = 0.7, list = F)
 
 mod <- randomForest(x = banknote[training.ids, 1:4],
                     y = banknote[training.ids, 5],
-                    ntree = 500,
-                    keep.forest = TRUE)
+                    ntree = 500, #500 arboles
+                    keep.forest = TRUE) #para retener los arboles de salida
 
 pred <- predict(mod, banknote[-training.ids,], type = "class")
 table(banknote[-training.ids,"class"], pred, dnn= c("Actual", "Predicho"))
