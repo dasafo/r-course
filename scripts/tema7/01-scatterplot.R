@@ -10,7 +10,15 @@ head(auto)
 
 plot <- ggplot(auto, aes(weight, mpg))
 plot + geom_point()
-plot + geom_point(alpha = 1/2, size = 5, 
+
+plot + geom_point(alpha = 1/2, size = 2, 
+                  aes(color = factor(cylinders))) 
+
+plot + geom_point(alpha = 1/2, size = 2, 
+                  aes(color = factor(cylinders))) + 
+  geom_smooth(method = "lm", se = TRUE, col ="green")
+
+plot + geom_point(alpha = 1/2, size = 2, 
                   aes(color = factor(cylinders))) + 
   geom_smooth(method = "lm", se = TRUE, col ="green") +
   facet_grid(cylinders~.) +
@@ -18,8 +26,6 @@ plot + geom_point(alpha = 1/2, size = 5,
   labs(x = "Peso") + labs(y = "Millas por Galeón")+
   labs(title = "Consumo vs Peso")
  
-
-
 
 qplot(x=weight, y = mpg, data = auto,
       geom=c("point", "smooth"), method = "lm", 

@@ -1,16 +1,19 @@
 s <- read.csv("../data/tema6/ts-example.csv")
 head(s)
 
+#creamos una serie temporal de s
 s.ts <- ts(s)
 class(s.ts)
 head(s.ts)
 plot(s.ts)
 
+#Podemos indicar los valores del eje x, que empiecen en 2001
 s.ts.a <- ts(s, start = 2001)
 s.ts.a
 plot(s.ts.a)
 
-
+#Podemos indicar los valores del eje x, que empiecen en enero de 2001 c(2001,1)
+#y que estamos tomando 12 muestras anuales
 s.ts.m <- ts(s, start = c(2001,1), frequency = 12)
 s.ts.m
 plot(s.ts.m)

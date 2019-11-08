@@ -21,7 +21,7 @@ ggplot(AAPL, aes(Date, Close)) +
   labs(color="Legend")+
   scale_color_manual("", 
                      breaks = c("Apple", "Amazon", "Facebook", "Google" ),
-                     values = c("gray", "yellow", "blue", "red"))+
+                     values = c("yellow", "gray", "blue", "red"))+
   ggtitle("Comparaciones de cierre de stocks")+
   theme(plot.title = element_text(lineheight = 0.7, face = "bold"))
 

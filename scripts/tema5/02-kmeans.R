@@ -6,7 +6,7 @@ protein.scaled = as.data.frame(scale(protein))
 library(devtools)
 devtools::install_github("kassambara/factoextra")
 
-km <- kmeans(protein.scaled,4)
+km <- kmeans(protein.scaled,4) #k=4
 km
 
 

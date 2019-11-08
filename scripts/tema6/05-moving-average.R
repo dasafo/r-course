@@ -2,7 +2,7 @@ s <- read.csv("../data/tema6/ts-example.csv")
 s$sales
 plot(s$sales, type = "l")
 
-n <- 7
+n <- 7 #7 muesstreos de ventas semanales
 weights <- rep(1/n, n)
 weights
 

@@ -2,7 +2,7 @@ install.packages(c("OpenImageR", "ClusterR"))
 library(OpenImageR)
 library(ClusterR)
 
-imagename <- "../data/tema5/jb.jpg"
+imagename <- "../data/tema5/bird.jpg"
 
 img <- readImage(imagename)
 
@@ -10,11 +10,12 @@ img.resize <- resizeImage(img, 350, 350,
                           method = "bilinear")
 imageShow(img)
 
+#imagen como vector
 img.vector <- apply(img, 3, as.vector)
 dim(img.vector)
 
 
-kmmb<-MiniBatchKmeans(img.vector, clusters = 10,
+kmmb<-MiniBatchKmeans(img.vector, clusters = 5,
                       batch_size = 20, num_init = 5,
                       max_iters = 100, init_fraction = 0.2,
                       initializer = "kmeans++",

@@ -23,7 +23,7 @@ as.Date("Ene 6, 2018", format="%b %d, %Y")
 as.Date("Enero 6, 18", format="%B %d, %y")
 
 #Fechas desde días de EPOCH
-dt <- 2018
+dt <- 2018 #2018 dias(no es un año)
 class(dt) <- "Date"
 dt
 
