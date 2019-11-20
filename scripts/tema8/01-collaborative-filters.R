@@ -6,17 +6,21 @@ data(MovieLense)
 
 head(MovieLense)
 
-rating_movies <- MovieLense[rowCounts(MovieLense)>50,
-                            colCounts(MovieLense)>100]
+rating_movies <- MovieLense[rowCounts(MovieLense)>50, #Nos quedamos con el usuario que ha valorado mas de  veces
+                            colCounts(MovieLense)>100] #mas de 100 visualizaiones por cada pelicula
 
-# Matrices Sparsed
-rating_movies@data[1,1]
+## Matrices Sparsed (ver la estructura de rating_movies creada antes)
+#los puntos son 0s que R no guarda aunque los muestre
 
-rating_movies@data[1,]
-rating_movies@data[,1]
+#el primer usuario del dataset
+rating_movies@data[1,1] #da un 5 a la primera pelicual
+rating_movies@data[1,] #Notas dadas a todas las peliculas
+
+rating_movies@data[,1] #las valoraciones de todos los usuarios a la primera peli(Toy Story)
 
 head(rownames(rating_movies))
 head(colnames(rating_movies))
+
 
 # Partición de entrenamiento y test del data set
 
@@ -26,7 +30,10 @@ t.id <- sample(x = c(T,F), size = nrow(rating_movies),
 data_train <- rating_movies[t.id,]
 data_test <- rating_movies[!t.id,]
 
-# Filtrado colaborativo basado en los ítems (IBCF)
+
+## Filtrado colaborativo basado en los ítems (IBCF)
+#Calcula las similitudes entre 2 items cualesquiera del dataset
+#utilizando medidas de similitud. Mide cómo de parecidos son 2 items.
 
 ibcf <- Recommender(data = data_train,
                     method = "IBCF", 
@@ -34,11 +41,11 @@ ibcf <- Recommender(data = data_train,
 
 ibcf.mod <- getModel(ibcf)
 
-ibcf.mod
+ibcf.mod #vemos el indice de similitud(cerca de 1 muy similares y viceversa)
 
 View(ibcf.mod$sim)
 
-n_rec <- 10
+n_rec <- 10 #el numero de pelis que queremos reconmendar
 ibcf.pred <- predict(object = ibcf,
                      newdata = data_test,
                      n = n_rec)
@@ -53,7 +60,11 @@ ibcf.rec.matrix <- sapply(ibcf.pred@items,
                           )
 View(ibcf.rec.matrix)
 
-# Filtrado colaborativo basado en usuarios (UBCF)
+
+## Filtrado colaborativo basado en usuarios (UBCF)
+#Calculas las similitudes entre los usuarios para predecir como un
+#usuario valorara cierto item basandose en cómo lo han hecho otros
+#usuarios de gustos similares
 
 ubcf <- Recommender(data = data_train, method = "UBCF")
 ubcf.mod <- getModel(ubcf)
@@ -77,10 +88,11 @@ View(ubcf.rec.matrix[,1:3])
 head(ubcf.pred@items)
 colnames(rating_movies)[94]
 
-#Representacion de la matriz de recomendaciones
+
+## Representacion de la matriz de recomendaciones
 
 recommender_models <- recommenderRegistry$get_entries(dataType = "realRatingMatrix")
-names(recommender_models)
+names(recommender_models) 
 
 image(MovieLense, main = "Mapa de calor de la matriz de valoraciones de películas")
 
@@ -100,7 +112,10 @@ image(rating_movies[rowCounts(rating_movies)> min_r_movies,
 
 
 
-#Recomendaciones basadas en datos binarios
+## Recomendaciones basadas en datos binarios
+#La mayoria de las veces el usuiario no valora nada, así que nos guiamos
+#por si ha comprado o no, y si la ha visto o no, para hacer valoraciones
+
 rating_movies_viewed <- binarize(rating_movies, minRating = 1)
 image(rating_movies_viewed)
 

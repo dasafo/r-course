@@ -3,12 +3,14 @@ install.packages(c("ggmap", "maps"))
 library(ggmap)
 library(maps)
 
-crimes <- read.csv("../data/tema12/chicago-full-crimes.csv")
+register_google(key = "AIzaSyDubzOfxiF79eaKWQtPgUOl9LmTtNxYa8c")
+
+crimes <- read.csv("../data/tema12/chicago-crime.csv")
 
 crimes$Date <- strptime(crimes$Date, format = "%m/%d/%y %H:%M")
 head(crimes)
 
-chicago <- get_map(location = "chicago", zoom = 11)
+chicago <- get_map(location = (41.850029 -87.6500473), zoom = 11)
 ggmap(chicago) +
   geom_point(data = crimes[1:500,], aes(x=Longitude, y = Latitude))
 

@@ -1,9 +1,8 @@
 #Machine Learning
-repos <- getOption("repos")
-repos["mxnet"]<-"https://s3.amazonaws.com/mxnet-r"
-repos
-options(repos = repos)
-install.packages("mxnet")
+
+install.packages("https://s3.ca-central-1.amazonaws.com/jeremiedb/share/mxnet/CPU/mxnet.zip", repos = NULL)
+#install.packages("mxnet")
+
 install.packages("jpeg")
 install.packages("png")
 

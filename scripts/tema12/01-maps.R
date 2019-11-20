@@ -1,8 +1,8 @@
 #R Google Maps
 library(RgoogleMaps)
 
-lat <- 39.637492
-lon <- 2.644557
+lat <- 41.652099 
+lon <- -0.910399
 
 uib.map <- GetMap(center = c(lat, lon), zoom = 17,
                   destfile = "tema12/uib.pdf",

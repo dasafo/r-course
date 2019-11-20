@@ -5,8 +5,19 @@ tartu.data <- read.csv("../data/tema7/tartu_housing.csv",
                        sep = ";") 
 head(tartu.data)
 
-tartu.map <- get_map(location="tartu",
-                     maptype = "satellite", zoom = 12)
+if(!requireNamespace("devtools")) install.packages("devtools")
+
+devtools::install_github("dkahle/ggmap", ref = "tidyup", force=TRUE)
+
+library(ggmap)
+
+register_google(key = "AIzaSyC8g6rMYjL7MV0niMjT-QSy84gqoce13_g")
+has_google_key()
+
+tartu_map <- get_map(location = "tartu", maptype = "satellite", zoom = 12,
+                     
+                     api_key = "AIzaSyC8g6rMYjL7MV0niMjT-QSy84gqoce13_g")
+
 ggmap(tartu.map, extent = "device")+
   geom_point(data = tartu.data, aes(x=lon, y = lat), 
              colour = "red", alpha = 0.12, size = 2)
